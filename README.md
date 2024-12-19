@@ -125,7 +125,25 @@ There is a placeholder "home" page. In order to navigate to the main page naviga
 
 ## Deploying the app
 
+### Fly.io
+
+Application can be easily deployed to [Fly.io](https://fly.io/docs/launch/deploy/).
+Environment variables should be passed using `--build-arg`. See section (#devops) below, this is done automatically via GitHub Actions.
+
+### Vercel
+
 Application can be easily deployed to [Vercel](https://vercel.com).
+
+### DevOps
+
+There is continuous delivery setup done via GitHub Actions:
+
+- [Fly.io pipeline](.github/workflows/cd-vercel.yml)
+- [Vercel pipeline](.github/workflows/cd-vercel.yml)
+
+Make sure to either set `FLY_API_TOKEN` or `VERCEL_TOKEN` depending on platform used in your GitHub environment variables.
+When using Fly.io make sure to set all variables and secrets as GitHub environment variables.
+When using Vercel make sure to set all variables and secrets as Vercel environment variables.
 
 ## Future of the project
 

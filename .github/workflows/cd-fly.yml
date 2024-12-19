@@ -1,0 +1,22 @@
+name: CD - Fly
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    concurrency: deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+          --build-arg NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+          --build-arg NEXT_PUBLIC_CESIUM_ACCESS_TOKEN=${{ vars.NEXT_PUBLIC_CESIUM_ACCESS_TOKEN }}
+          --build-arg NEXT_PUBLIC_CESIUM_ASSET_ID=${{ vars.NEXT_PUBLIC_CESIUM_ASSET_ID }}
+          --build-arg NEXT_PUBLIC_MAPBOX_STYLE_USERNAME=${{ vars.NEXT_PUBLIC_MAPBOX_STYLE_USERNAME }}
+          --build-arg NEXT_PUBLIC_MAPBOX_STYLE_ID=${{ vars.NEXT_PUBLIC_MAPBOX_STYLE_ID }}
+          --build-arg GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
