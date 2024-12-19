@@ -7,6 +7,13 @@ app = 'solarsight'
 primary_region = 'arn'
 
 [build]
+  [build.args]
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN = ""
+    NEXT_PUBLIC_CESIUM_ACCESS_TOKEN = ""
+    NEXT_PUBLIC_CESIUM_ASSET_ID = ""
+    NEXT_PUBLIC_MAPBOX_STYLE_USERNAME = ""
+    NEXT_PUBLIC_MAPBOX_STYLE_ID = ""
+    GOOGLE_API_KEY=""
 
 [http_service]
   internal_port = 3000
